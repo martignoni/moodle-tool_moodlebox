@@ -46,6 +46,23 @@ $dhcpclientnumber = count($leases);
 exec('awk \'{print $1/1000" °C"}\' /sys/class/thermal/thermal_zone0/temp', $cputemperature);
 exec('awk \'{print $1/1000" Mhz"}\' /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq', $cpufrequency);
 exec('uptime -p', $uptime);
+exec('cat /proc/sys/net/ipv4/ip_forward', $ipforward);
+$ipforward = $ipforward[0];
+
+class ipforwardtoggle_form extends moodleform {
+  public function definition() {
+    //global $CFG;
+    $mform = $this->_form;
+    if ($this->_customdata['ipforward'] <> '1') {
+        $buttonaction = 'ipforwardenable';
+        $buttonname = get_string('ipforwardenable', 'local_moodlebox');
+    } else {
+        $buttonaction = 'ipforwarddisable';
+        $buttonname = get_string('ipforwarddisable', 'local_moodlebox');
+    }
+    $mform->addElement('submit', $buttonaction, $buttonname);
+  }
+}
 
 class restartshutdown_form extends moodleform {
   public function definition() {
@@ -81,6 +98,29 @@ if ($dhcpclientnumber > 0) {
   }
   echo '</ul>';
 }
+echo $OUTPUT->box_end();
+
+// IP forwarding section
+echo $OUTPUT->heading(get_string('ipforward', 'local_moodlebox'));
+echo $OUTPUT->box_start('generalbox');
+
+if ( $ipforward == '1') {
+  echo '<p>' . get_string('ipforwardonmessage', 'local_moodlebox') . '</p>';
+} else {
+  echo '<p>' . get_string('ipforwardoffmessage', 'local_moodlebox') . '</p>';
+}
+
+$default_form_data = array('ipforward' => $ipforward);
+$ipforwardform = new ipforwardtoggle_form(null, $default_form_data);
+$ipforwardform->display();
+
+if ($data = $ipforwardform->get_data()) {
+  $file = fopen('.ipforwardtoggle','w');
+  fwrite($file, 'Toggle IP forwarding now');
+  fclose($file);
+  echo '<div class="alert alert-block">Toggle IP forwarding</div>';
+}
+
 echo $OUTPUT->box_end();
 
 // Restart-shutdown section
