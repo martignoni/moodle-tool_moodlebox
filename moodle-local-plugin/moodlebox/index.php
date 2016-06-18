@@ -152,13 +152,13 @@ $restartshutdownform->display();
 
 if ($data = $restartshutdownform->get_data()) {
 // see http://stackoverflow.com/questions/5226728/how-to-shutdown-ubuntu-with-exec-php
-  if (!empty($data->restart)) {
+  if (!empty($data->restartbutton)) {
     $file = fopen('.reboot-server','w');
     fwrite($file, 'Reboot now');
     fclose($file);
     echo '<div class="alert alert-block">' . get_string('restartmessage', 'local_moodlebox') . '</div>';
   }
-  if (!empty($data->shutdown)) {
+  if (!empty($data->shutdownbutton)) {
     $file = fopen('.shutdown-server','w');
     fwrite($file, 'Shutdown now');
     fclose($file);
