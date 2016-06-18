@@ -24,13 +24,16 @@
  */
 
 
-$string['cpufrequency'] = 'CPU frequency:';
-$string['cpuload'] = 'CPU load:';
-$string['cputemperature'] = 'CPU temperature:';
-$string['dhcpclientnumber'] = 'DHCP client number:';
-$string['kernelversion'] = 'Kernel version:';
+$string['clientinfo'] = 'Client information';
+$string['cpufrequency'] = 'CPU frequency';
+$string['cpuload'] = 'CPU load';
+$string['cputemperature'] = 'CPU temperature';
+$string['dhcpclientnumber'] = 'DHCP client number';
+$string['information'] = 'Information';
+$string['kernelversion'] = 'Kernel version';
+$string['parameter'] = 'Parameter';
 $string['pluginname'] = 'MoodleBox administration';
-$string['raspbianversion'] = 'Raspbian version:';
+$string['raspbianversion'] = 'Raspbian version';
 $string['restart'] = 'Restart MoodleBox';
 $string['restartmessage'] = 'The MoodleBox is restarting. It will be online again in one or two minutes.';
 $string['restartstop'] = 'Restart and shutdown';
@@ -42,4 +45,4 @@ $string['ipforwardoffmessage'] = 'IP forwarding off';
 $string['shutdown'] = 'Shutdown MoodleBox';
 $string['shutdownmessage'] = 'The MoodleBox is shutting down. Please wait one or two minutes before disconnecting the power supply.';
 $string['systeminfo'] = 'System information';
-$string['uptime'] = 'System uptime:';
+$string['uptime'] = 'System uptime';

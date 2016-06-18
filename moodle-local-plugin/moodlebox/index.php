@@ -83,21 +83,35 @@ echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string('systeminfo', 'local_moodlebox'));
 echo $OUTPUT->box_start('generalbox');
 
-echo '<p>' . get_string('kernelversion', 'local_moodlebox') . ' ' . $kernelversion[0] . '</p>';
-echo '<p>' . get_string('raspbianversion', 'local_moodlebox') . ' ' . $raspbianversion[0] . '</p>';
-echo '<p>' . get_string('cpuload', 'local_moodlebox') . ' ('. $cpuload[0] . ', ' . $cpuload[1] . ', ' . $cpuload[2] . ')</p>';
-echo '<p>' . get_string('cputemperature', 'local_moodlebox') . ' '. $cputemperature[0] . '</p>';
-echo '<p>' . get_string('cpufrequency', 'local_moodlebox') . ' '. $cpufrequency[0] . '</p>';
-echo '<p>' . get_string('uptime', 'local_moodlebox') . ' '. $uptime[0] . '</p>';
-echo '<p>' . get_string('dhcpclientnumber', 'local_moodlebox') . ' ' . $dhcpclientnumber . '</p>';
+echo '<table class="admintable environmenttable generaltable" id="moodleboxstatus">';
+echo '<thead><tr><th class="header c0" scope="col" width="50%">' . get_string('parameter', 'local_moodlebox') .
+      '</th><th class="header c1" scope="col" width="50%">' . get_string('information', 'local_moodlebox') .
+      '</th></tr></thead>';
+echo '<tbody>';
+echo '<tr><th class="cell c0">' . get_string('kernelversion', 'local_moodlebox') .
+      '</td><td class="cell c1">' . $kernelversion[0] . '</td></tr>';
+echo '<tr><th class="cell c0">' . get_string('raspbianversion', 'local_moodlebox') .
+      '</td><td class="cell c1">' . $raspbianversion[0] . '</td></tr>';
+echo '<tr><th class="cell c0">' . get_string('cpuload', 'local_moodlebox') .
+      '</td><td class="cell c1">' . $cpuload[0] . ', ' . $cpuload[1] . ', ' . $cpuload[2] . '</td></tr>';
+echo '<tr><th class="cell c0">' . get_string('cputemperature', 'local_moodlebox') .
+      '</td><td class="cell c1">' . $cputemperature[0] . '</td></tr>';
+echo '<tr><th class="cell c0">' . get_string('cpufrequency', 'local_moodlebox') .
+      '</td><td class="cell c1">' . $cpufrequency[0] . '</td></tr>';
+echo '<tr><th class="cell c0">' . get_string('uptime', 'local_moodlebox') .
+      '</td><td class="cell c1">' . $uptime[0] . '</td></tr>';
+echo '<tr><th class="cell c0">' . get_string('dhcpclientnumber', 'local_moodlebox') .
+      '</td><td class="cell c1">' . $dhcpclientnumber . '</td></tr>';
 if ($dhcpclientnumber > 0) {
-  echo '<ul>';
   foreach($leases as $row) {
     $item = explode(' ', $row);
-    echo '<li>' . $item[2] . ' : ' . $item[3] . '</li>';
+    echo '<tr><td class="cell c0" style="padding-left:3em;">' . get_string('clientinfo', 'local_moodlebox') .
+          '</td><td class="cell c1">' . $item[2] . ' (' . $item[3] . ')</td></tr>';
   }
-  echo '</ul>';
 }
+echo '</tbody>';
+echo '</table>';
+
 echo $OUTPUT->box_end();
 
 // IP forwarding section
