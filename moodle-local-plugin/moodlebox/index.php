@@ -23,9 +23,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$plugin = new stdClass();
+
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once($CFG->libdir.'/adminlib.php');
 require_once($CFG->libdir.'/formslib.php');
+require_once(dirname(__FILE__).'/version.php');
 
 require_login();
 require_capability('moodle/site:config', context_system::instance());
@@ -46,6 +49,7 @@ $dhcpclientnumber = count($leases);
 exec('awk \'{print $1/1000" °C"}\' /sys/class/thermal/thermal_zone0/temp', $cputemperature);
 exec('awk \'{print $1/1000" Mhz"}\' /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq', $cpufrequency);
 exec('uptime -p', $uptime);
+$moodleboxversion = $plugin->release . ' (' . $plugin->version . ')';
 exec('cat /proc/sys/net/ipv4/ip_forward', $ipforward);
 $ipforward = $ipforward[0];
 
@@ -88,6 +92,8 @@ echo '<thead><tr><th class="header c0" scope="col" width="50%">' . get_string('p
       '</th><th class="header c1" scope="col" width="50%">' . get_string('information', 'local_moodlebox') .
       '</th></tr></thead>';
 echo '<tbody>';
+echo '<tr><th class="cell c0">' . get_string('moodleboxversion', 'local_moodlebox') .
+      '</td><td class="cell c1">' . $moodleboxversion . '</td></tr>';
 echo '<tr><th class="cell c0">' . get_string('kernelversion', 'local_moodlebox') .
       '</td><td class="cell c1">' . $kernelversion[0] . '</td></tr>';
 echo '<tr><th class="cell c0">' . get_string('raspbianversion', 'local_moodlebox') .

@@ -31,6 +31,7 @@ $string['cputemperature'] = 'CPU temperature';
 $string['dhcpclientnumber'] = 'DHCP client number';
 $string['information'] = 'Information';
 $string['kernelversion'] = 'Kernel version';
+$string['moodleboxversion'] = 'MoodleBox version';
 $string['parameter'] = 'Parameter';
 $string['pluginname'] = 'MoodleBox administration';
 $string['raspbianversion'] = 'Raspbian version';
