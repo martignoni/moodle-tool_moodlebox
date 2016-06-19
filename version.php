@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die;
 
 $plugin->version  = 2016061000;
-$plugin->release = '1.0a1';
+$plugin->release = '1.0a2';
 $plugin->requires = 2015051103;
 $plugin->maturity = MATURITY_ALPHA;
 $plugin->component = 'local_moodlebox';

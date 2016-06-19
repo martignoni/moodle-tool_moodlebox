@@ -151,17 +151,14 @@ $restartshutdownform = new restartshutdown_form();
 $restartshutdownform->display();
 
 if ($data = $restartshutdownform->get_data()) {
-// see http://stackoverflow.com/questions/5226728/how-to-shutdown-ubuntu-with-exec-php
+// idea from http://stackoverflow.com/questions/5226728/how-to-shutdown-ubuntu-with-exec-php
+// adapted for use with incron
   if (!empty($data->restartbutton)) {
-    $file = fopen('.reboot-server','w');
-    fwrite($file, 'Reboot now');
-    fclose($file);
+    exec('touch .reboot-server');
     echo '<div class="alert alert-block">' . get_string('restartmessage', 'local_moodlebox') . '</div>';
   }
   if (!empty($data->shutdownbutton)) {
-    $file = fopen('.shutdown-server','w');
-    fwrite($file, 'Shutdown now');
-    fclose($file);
+    exec('touch .shutdown-server');
     echo '<div class="alert alert-block">' . get_string('shutdownmessage', 'local_moodlebox') . '</div>';
   }
 }
