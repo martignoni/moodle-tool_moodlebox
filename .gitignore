@@ -1,5 +1,5 @@
 ## Files specific to this project
-doc/*
+util/*
 
 # Mac finder files and hidden folders
 .DS_Store
