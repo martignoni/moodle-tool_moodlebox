@@ -42,7 +42,7 @@ $PAGE->set_title($strheading);
 $PAGE->set_heading($strheading);
 
 exec('uname -srm', $kernelversion);
-exec('hostnamectl | grep \'Operating System\' | cut -d\':\' -f2', $raspbianversion);
+exec('lsb_release -d | cut -d\':\' -f2', $raspbianversion);
 $cpuload = sys_getloadavg();
 exec('cat /var/lib/misc/dnsmasq.leases', $leases);
 $dhcpclientnumber = count($leases);
